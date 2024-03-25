@@ -1,10 +1,7 @@
+import { Book } from "../../interfaces/book";
+
 interface LargeBookListItemProps {
-	book: {
-		name: string;
-		pages: number;
-		title: string;
-		price: number;
-	};
+	book: Book;
 }
 
 export const LargeBookListItem = ({ book }: LargeBookListItemProps) => {

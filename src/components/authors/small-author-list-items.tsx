@@ -1,8 +1,7 @@
+import { Author } from "../../interfaces/author";
+
 interface SmallAuthorListItemProps {
-	author: {
-		name: string;
-		age: number;
-	};
+	author: Pick<Author, "name" | "age">;
 }
 
 export const SmallAuthorListItem = ({ author }: SmallAuthorListItemProps) => {

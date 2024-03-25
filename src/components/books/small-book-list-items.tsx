@@ -1,8 +1,7 @@
+import { Book } from "../../interfaces/book";
+
 interface SmallBookListItemProps {
-	book: {
-		name: string;
-		price: number;
-	};
+	book: Pick<Book, "name" | "price">;
 }
 
 export const SmallBookListItem = ({ book }: SmallBookListItemProps) => {
