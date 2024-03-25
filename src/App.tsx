@@ -1,13 +1,22 @@
-import { LargeBookListItem } from "./components/books/large-list-items";
-import { Modal } from "./components/layout/modal";
-
-import { books } from "./data/books";
+import { CurrentUserLoader } from "./components/users/current-user-loader";
+import { UserInfo } from "./components/users/user-info";
+import { UserLoader } from "./components/users/user-loader";
 
 function App() {
 	return (
-		<Modal>
-			<LargeBookListItem book={books[0]} />
-		</Modal>
+		<>
+			<UserLoader userId={"3"}>
+				<UserInfo />
+			</UserLoader>
+
+			<CurrentUserLoader>
+				<UserInfo />
+			</CurrentUserLoader>
+
+			<UserLoader userId={"1"}>
+				<UserInfo />
+			</UserLoader>
+		</>
 	);
 }
 
