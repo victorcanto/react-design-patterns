@@ -3,6 +3,8 @@ import { UserInfo } from "./components/users/user-info";
 import { UserLoader } from "./components/users/user-loader";
 import { ResourceLoader } from "./components/container/resource-loader";
 import { BookInfo } from "./components/books/book-info";
+import { DataSource } from "./components/container/data-source";
+import * as actions from "./actions";
 
 function App() {
 	return (
@@ -34,6 +36,24 @@ function App() {
 			<ResourceLoader resourceUrl={"/books/1"} resourceName={"book"}>
 				<BookInfo />
 			</ResourceLoader>
+
+			<hr />
+
+			<DataSource
+				getData={async () => await actions.getUserById("3")}
+				resourceName="user"
+			>
+				<UserInfo />
+			</DataSource>
+
+			<hr />
+
+			<DataSource
+				getData={async () => await actions.getBooksById("2")}
+				resourceName="book"
+			>
+				<BookInfo />
+			</DataSource>
 		</>
 	);
 }
