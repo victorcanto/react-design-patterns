@@ -6,6 +6,14 @@ import { BookInfo } from "./components/books/book-info";
 import { DataSource } from "./components/container/data-source";
 import * as actions from "./actions";
 import { DataSourceRender } from "./components/container/data-source-render";
+import { getDataFromLocalStorage, setDataToLocalStorage } from "./storage";
+import { books } from "./data/books";
+import { Book } from "./interfaces/book";
+
+const setDataInBook = setDataToLocalStorage("book");
+setDataInBook(books[1]);
+const setDataInBooks = setDataToLocalStorage("books");
+setDataInBooks(books);
 
 function App() {
 	return (
@@ -68,6 +76,32 @@ function App() {
 			<DataSourceRender
 				getData={async () => await actions.getBooksById("3")}
 				render={(book) => <BookInfo book={book} />}
+			></DataSourceRender>
+
+			<hr />
+
+			<DataSource
+				getData={async () => getDataFromLocalStorage("book")}
+				resourceName="book"
+			>
+				<BookInfo />
+			</DataSource>
+
+			<hr />
+
+			<DataSourceRender
+				getData={async () => getDataFromLocalStorage<Book[]>("books")()}
+				render={(books) =>
+					books?.length ? (
+						<>
+							{books.map((book, i) => (
+								<BookInfo key={`${book.name}-${i}`} book={book} />
+							))}
+						</>
+					) : (
+						"No books"
+					)
+				}
 			></DataSourceRender>
 		</>
 	);
