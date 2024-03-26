@@ -1,29 +1,96 @@
 import { useState } from "react";
-import { ControlledForm } from "./components/forms/controlled-form";
-import { UncontrolledForm } from "./components/forms/uncontrolled-form";
-import { ControlledModal } from "./components/layout/modals/controlled-modal";
-import { UncontrolledModal } from "./components/layout/modals/uncontrolled-modal";
+import { UncontrolledFlow } from "./components/flow/uncontrolled-flow";
 import { SplitScreen } from "./components/layout/split-screen";
+import { ControlledFlow } from "./components/flow/controlled-flow";
+
+interface UserGoNext {
+	name?: string;
+	age?: number;
+	country?: string;
+}
+interface GoNext {
+	goNext?: (data: UserGoNext) => void;
+}
+
+const StepOne = ({ goNext }: GoNext) => {
+	return (
+		<>
+			<h1>Step #1: Enter your name:</h1>
+			<button onClick={() => goNext?.({ name: "Victor" })}>Next</button>
+		</>
+	);
+};
+const StepTwo = ({ goNext }: GoNext) => {
+	return (
+		<>
+			<h1>Step #2: Enter your age:</h1>
+			<button onClick={() => goNext?.({ age: 24 })}>Next</button>
+		</>
+	);
+};
+const StepThree = ({ goNext }: GoNext) => {
+	return (
+		<>
+			<h1>Step #3: Enter your country:</h1>
+			<button onClick={() => goNext?.({ country: "Brazil" })}>Next</button>
+		</>
+	);
+};
+
+const StepCongradulations = ({ goNext }: GoNext) => {
+	return (
+		<>
+			<h1>Congradulations! You qualify for the gitft!</h1>
+			<button onClick={() => goNext?.({ country: "Brazil" })}>Next</button>
+		</>
+	);
+};
 
 function App() {
-	const [shouldDisplay, setShouldDisplay] = useState(false);
+	const [data, setData] = useState({} as UserGoNext);
+	const [currentStepIndex, setCurrentStepIndex] = useState(0);
+
+	const goNext = (dataFromStep: UserGoNext) => {
+		setData({ ...data, ...dataFromStep });
+		setCurrentStepIndex(currentStepIndex + 1);
+	};
+
 	return (
-		<SplitScreen leftWidth={1} rightWidth={1}>
-			<UncontrolledModal>
-				<UncontrolledForm />
-			</UncontrolledModal>
-			<div>
-				<ControlledModal
-					shouldDisplay={shouldDisplay}
-					onClose={() => setShouldDisplay(false)}
+		<div>
+			<SplitScreen>
+				<UncontrolledFlow
+					onDone={(result) => {
+						alert(
+							"Yah, you made it to the final step!\n Data: " +
+								JSON.stringify(result)
+						);
+					}}
 				>
-					<ControlledForm />
-				</ControlledModal>
-				<button onClick={() => setShouldDisplay(!shouldDisplay)}>
-					{shouldDisplay ? "Hide ControlledModal" : "Show ControlledModal"}
-				</button>
-			</div>
-		</SplitScreen>
+					<StepOne />
+					<StepTwo />
+					<StepThree />
+				</UncontrolledFlow>
+
+				<ControlledFlow
+					onDone={(result) => {
+						alert(
+							"Yah, you made it to the final step!\n Data: " +
+								JSON.stringify({ ...data, ...result })
+						);
+					}}
+					currentIndex={currentStepIndex}
+					onNext={goNext}
+				>
+					<StepOne />
+					<StepTwo />
+					{typeof data.age === "number" && data.age > 23 ? (
+						<StepCongradulations />
+					) : (
+						<StepThree />
+					)}
+				</ControlledFlow>
+			</SplitScreen>
+		</div>
 	);
 }
 
