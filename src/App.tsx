@@ -5,6 +5,7 @@ import { ResourceLoader } from "./components/container/resource-loader";
 import { BookInfo } from "./components/books/book-info";
 import { DataSource } from "./components/container/data-source";
 import * as actions from "./actions";
+import { DataSourceRender } from "./components/container/data-source-render";
 
 function App() {
 	return (
@@ -54,6 +55,20 @@ function App() {
 			>
 				<BookInfo />
 			</DataSource>
+
+			<hr />
+
+			<DataSourceRender
+				getData={async () => await actions.getUserById("3")}
+				render={(user) => <UserInfo user={user} />}
+			></DataSourceRender>
+
+			<hr />
+
+			<DataSourceRender
+				getData={async () => await actions.getBooksById("3")}
+				render={(book) => <BookInfo book={book} />}
+			></DataSourceRender>
 		</>
 	);
 }
