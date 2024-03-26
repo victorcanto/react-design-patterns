@@ -4,17 +4,23 @@ export const ControlledForm = () => {
 	const [error, setError] = useState("");
 	const [name, setName] = useState("");
 	const [age, setAge] = useState("");
+	const [isSubmitted, setIsSubmitted] = useState(false);
 
 	useEffect(() => {
-		if (name.length < 1) {
-			setError("Name cannot be empty");
+		if (isSubmitted && name.length < 3) {
+			setError("Name cannot be a digit");
 		} else {
 			setError("");
 		}
-	}, [name]);
+	}, [isSubmitted, name]);
+
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		setIsSubmitted(true);
+	};
 
 	return (
-		<form>
+		<form onSubmit={handleSubmit}>
 			<input
 				type="text"
 				name="name"
