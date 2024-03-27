@@ -1,6 +1,15 @@
-import { includeUpdatableUser } from "../HOCs/include-updatable-user";
+import { User } from "../../interfaces/user";
+import { includeUpdateResource } from "../HOCs/include-updatable-resource";
 
-export const UserInfoForm = includeUpdatableUser(
+interface UserInfoFormProps {
+	user?: User;
+	initialUser?: User;
+	onChangeUser?: (updates: Partial<User>) => void;
+	onPostUser?: () => void;
+	onResetUser?: () => void;
+}
+
+export const UserInfoForm = includeUpdateResource<UserInfoFormProps, User>(
 	({ user, onChangeUser, onPostUser, onResetUser }) => {
 		return user ? (
 			<>
@@ -27,5 +36,6 @@ export const UserInfoForm = includeUpdatableUser(
 			<h3>Loading</h3>
 		);
 	},
-	"3"
+	"/users/3",
+	"user"
 );
