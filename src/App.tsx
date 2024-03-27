@@ -1,30 +1,15 @@
-import { includeUser } from "./components/HOCs/include-user";
-import { logProps } from "./components/HOCs/log-props";
-import { UserInfoForm } from "./components/forms/user-info-form";
-import { UserInfo } from "./components/users/user-info";
-
-const UserInfoWrapper = logProps(UserInfo);
-const UserInfoLoader = includeUser(UserInfo, "2");
+import { UserInfoByIdWithUserHook } from "./components/users/user-info-by-id-with-user-hook";
+import { UserInfoWithCurrentUserHook } from "./components/users/user-info-with-current-user-hook";
+import { UserInfoWithDataSourceHook } from "./components/users/user-info-with-data-source-hook";
+import { UserInfoWithResourceHook } from "./components/users/user-info-with-resource-hook";
 
 function App() {
 	return (
 		<div>
-			<UserInfoForm />
-			<UserInfoLoader />
-			<UserInfoWrapper
-				user={{
-					id: "1",
-					name: "Victor Canto",
-					age: 24,
-					country: "Brazil",
-					books: [
-						"Implementando Domain-Driven Design",
-						"Arquitectura Limpa",
-						"Codigo Limpo",
-						"Eloquente Javascript",
-					],
-				}}
-			/>
+			<UserInfoWithCurrentUserHook />
+			<UserInfoByIdWithUserHook userId="3" />
+			<UserInfoWithResourceHook userId="2" />
+			<UserInfoWithDataSourceHook userId="1" />
 		</div>
 	);
 }
