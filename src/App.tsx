@@ -1,9 +1,10 @@
-import { GreenSmallButton, RedButton } from "./components/functional-programming/composition";
+import { GreenSmallButton } from "./components/functional-programming/composition";
+import { RedSmallButton } from "./components/functional-programming/partial";
 
 function App() {
 	return (
 		<div>
-			<RedButton text="I am red!" />
+			<RedSmallButton text="I am RedSmallButton!" />
 			<GreenSmallButton text="I am small and green!" />
 		</div>
 	);
