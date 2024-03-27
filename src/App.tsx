@@ -1,10 +1,10 @@
-import { RecursiveComponent } from "./components/recursive/recursive";
-import { nestedObject } from "./data/recursive";
+import { GreenSmallButton, RedButton } from "./components/functional-programming/composition";
 
 function App() {
 	return (
 		<div>
-			<RecursiveComponent data={nestedObject} />
+			<RedButton text="I am red!" />
+			<GreenSmallButton text="I am small and green!" />
 		</div>
 	);
 }
