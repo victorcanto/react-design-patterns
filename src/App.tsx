@@ -1,19 +1,14 @@
-import { useRef } from "react";
-import { InputRef } from "./components/refs/input-ref";
+import { ChildDemo } from "./components/error-boundaries/child-demo";
+import { ErrorBoundary } from "./components/error-boundaries/error-boundary";
 
 function App() {
-	const inputRef = useRef<HTMLInputElement>(null);
-
-	const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault();
-		console.log(inputRef.current?.value);
-	};
-
 	return (
-		<form onSubmit={submitHandler}>
-			<InputRef ref={inputRef} />
-			<button type="submit">Submit</button>
-		</form>
+		<div>
+			<h1>Parent Component</h1>
+			<ErrorBoundary fallback={<h1>Error at Child Level</h1>}>
+				<ChildDemo />
+			</ErrorBoundary>
+		</div>
 	);
 }
 
