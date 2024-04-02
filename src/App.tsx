@@ -1,15 +1,22 @@
-import { useRef } from "react";
-import { InputRef } from "./components/use-imperative-handle/input-ref";
+import { useDeferredValue, useState } from "react";
+import { HeavyComponent } from "./components/use-deferred-value/heavy-component";
 
 function App() {
-	const inputRef = useRef<HTMLInputElement>(null);
+	const [keyword, setKeyword] = useState("");
+
+	const deferredKeyword = useDeferredValue(keyword);
+
+	console.log("Keyword:", keyword);
+	console.log("Deferred keyword:", deferredKeyword);
 
 	return (
 		<>
-			<InputRef type="text" ref={inputRef} />
-			<button onClick={() => console.log(inputRef.current?.value)}>
-				Log value
-			</button>
+			<input
+				type="text"
+				value={keyword}
+				onChange={(e) => setKeyword(e.target.value)}
+			/>
+			<HeavyComponent keyword={deferredKeyword} />
 		</>
 	);
 }
