@@ -1,18 +1,7 @@
-import { Form } from "./components/use-id/form";
+import { SwitchInput } from "./components/use-callback-with-ref/switch-input";
 
 function App() {
-	return (
-		<>
-			<Form />
-			<p>
-				Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ea neque
-				error pariatur libero! Incidunt accusantium reprehenderit molestias. Cum
-				incidunt labore, accusantium quam eius ullam laudantium quos dolor
-				ducimus praesentium.
-			</p>
-			<Form />
-		</>
-	);
+	return <SwitchInput />;
 }
 
 export default App;
