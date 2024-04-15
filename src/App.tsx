@@ -1,5 +1,7 @@
+import Demo from "./components/element-prop/demo";
+
 function App() {
-  return <div>App</div>;
+  return <Demo />;
 }
 
 export default App;
