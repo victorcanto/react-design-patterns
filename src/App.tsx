@@ -1,7 +1,7 @@
-import Demo from "./components/element-prop/demo";
+import CartContextDemo from "./contexts/cart/demo";
 
 function App() {
-  return <Demo />;
+  return <CartContextDemo />;
 }
 
 export default App;
