@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import { ErrorBoundary } from "./section-1-10/components/error-boundaries/error-boundary.tsx";
+import { ErrorBoundary } from "./error-boundary.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
