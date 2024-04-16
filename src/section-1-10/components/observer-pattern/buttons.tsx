@@ -1,4 +1,4 @@
-import { emitter } from "../../App";
+import { emitter } from "../../../App";
 
 export const Buttons = () => {
 	const onIncrementCounter = () => {

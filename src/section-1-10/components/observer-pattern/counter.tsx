@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { emitter } from "../../App";
+import { emitter } from "../../../App";
 
 export const Counter = () => {
 	const [count, setCount] = useState(0);
