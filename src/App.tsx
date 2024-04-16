@@ -1,7 +1,7 @@
-import CartContextDemo from "./contexts/cart/demo";
+import { Users } from "../demos/general-architecture/src/components/users";
 
 function App() {
-  return <CartContextDemo />;
+  return <Users />;
 }
 
 export default App;
