@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useFetchUsers } from "./hooks/use-fetch-users";
+import { LazyLoader } from "../common/lazy-loader";
 
 const Container = styled.div`
   margin-left: auto;
@@ -44,7 +45,11 @@ function Users() {
   return (
     <Container>
       <FetchButton onClick={initFetchUsers}>
-        {isFetchUsersStatusPending ? "Loading..." : "Fetch Users"}
+        <LazyLoader
+          show={isFetchUsersStatusPending}
+          delay={500}
+          default="Fetch Users"
+        />
       </FetchButton>
       <FlexContainer>
         <ContentContainer>
