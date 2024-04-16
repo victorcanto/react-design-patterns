@@ -1,7 +1,5 @@
-import { useState } from "react";
-import { fetchUsers, useApiStatus } from "../../../api";
-import { apiStatus } from "../../../constants/api-status";
-import { withAsync } from "../../../helpers";
+import { fetchUsers } from "../../../api";
+import { useApi } from "../../../api/hooks/use-api";
 
 interface User {
   id: string;
@@ -10,27 +8,17 @@ interface User {
 }
 
 export const useFetchUsers = () => {
-  const [users, setUsers] = useState<User[]>([]);
   const {
+    data: users,
     status: fetchUsersStatus,
-    setStatus: setFetchUsersStatus,
+    exec: initFetchUsers,
     isIdle: isFetchUsersStatusIdle,
     isPending: isFetchUsersStatusPending,
     isSuccess: isFetchUsersStatusSuccess,
     isError: isFetchUsersStatusError,
-  } = useApiStatus(apiStatus.IDLE);
-
-  const initFetchUsers = async () => {
-    setFetchUsersStatus(apiStatus.PENDING);
-    const { response, error } = await withAsync<User[]>(() => fetchUsers());
-
-    if (error) {
-      setFetchUsersStatus(apiStatus.ERROR);
-    } else if (response) {
-      setFetchUsersStatus(apiStatus.SUCCESS);
-      setUsers(response);
-    }
-  };
+  } = useApi<User[]>(() => fetchUsers().then((response) => response.data), {
+    initialData: [],
+  });
 
   return {
     users,
