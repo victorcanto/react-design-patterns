@@ -1,0 +1,1 @@
+// Em aplicativos maiores, podemos ter código de lógica de negócios complexo que é usado em alguns diferentes lugares.

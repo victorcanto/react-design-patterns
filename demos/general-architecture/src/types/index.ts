@@ -1,0 +1,1 @@
+// Colocar qualquer tipos globais e compartilháveis.

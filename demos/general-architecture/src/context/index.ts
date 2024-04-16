@@ -1,0 +1,1 @@
+// Esse diretorio deve conter quaisquer provedores de estado de contexto de nivel global.
