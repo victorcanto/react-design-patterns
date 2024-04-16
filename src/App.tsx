@@ -1,4 +1,4 @@
-import { Users } from "../demos/general-architecture/src/components/users";
+import { Users } from "./components/users";
 
 function App() {
   return <Users />;
