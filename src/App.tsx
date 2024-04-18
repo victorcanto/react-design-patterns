@@ -1,7 +1,7 @@
-import { Users } from "./components/users";
+import SearchMeals from "./components/meals/search-meals";
 
 function App() {
-  return <Users />;
+  return <SearchMeals />;
 }
 
 export default App;
