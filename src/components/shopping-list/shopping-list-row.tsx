@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
-
 import styled from "styled-components";
 import { Item } from "./types/shopping-list";
+import { useEditShoppingItem } from "./hooks/use-edit-shopping-item";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -29,46 +28,6 @@ const StyledButton = styled.button`
     text-decoration: underline;
   }
 `;
-
-interface UseEditShoppingItemProps {
-  item: Item;
-  updateItem: (payload: any) => void;
-  index: number;
-}
-
-const useEditShoppingItem = (props: UseEditShoppingItemProps) => {
-  const { item, updateItem, index } = props;
-  const [name, setName] = useState(item.name);
-  const [isEditing, setIsEditing] = useState(false);
-  useEffect(() => {
-    setName(props.item.name);
-  }, [props.item]);
-  const onSaveItem = () => {
-    updateItem({
-      index,
-      item: {
-        ...item,
-        name,
-      },
-    });
-    setIsEditing(false);
-  };
-  const onEditItem = () => {
-    setIsEditing(true);
-  };
-  const cancelEdit = () => {
-    setIsEditing(false);
-    setName(props.item.name);
-  };
-  return {
-    name,
-    isEditing,
-    cancelEdit,
-    setName,
-    onSaveItem,
-    onEditItem,
-  };
-};
 
 interface ShoppingListRowProps {
   item: Item;
