@@ -45,7 +45,7 @@ const withAbort = (fn: (...args: any[]) => Promise<any>) => {
   return executor;
 };
 
-const withLogging = async (promise: Promise<any>) => {
+const withLogger = async (promise: Promise<any>) =>
   promise.catch((error) => {
     if (!process.env.REACT_APP_DEBUG_API) throw error;
 
@@ -61,20 +61,19 @@ const withLogging = async (promise: Promise<any>) => {
     console.log(error.config);
     throw error;
   });
-};
 
 const api = (axios: AxiosInstance) => {
   return {
     get: (url: string, config = {}) =>
-      withLogging(withAbort(axios.get)(url, config)),
+      withLogger(withAbort(axios.get)(url, config)),
     delete: (url: string, config = {}) =>
-      withLogging(withAbort(axios.delete)(url, config)),
+      withLogger(withAbort(axios.delete)(url, config)),
     post: (url: string, body: unknown, config = {}) =>
-      withLogging(withAbort(axios.post)(url, body, config)),
+      withLogger(withAbort(axios.post)(url, body, config)),
     put: (url: string, body: unknown, config = {}) =>
-      withLogging(withAbort(axios.put)(url, body, config)),
+      withLogger(withAbort(axios.put)(url, body, config)),
     patch: (url: string, body: unknown, config = {}) =>
-      withLogging(withAbort(axios.patch)(url, body, config)),
+      withLogger(withAbort(axios.patch)(url, body, config)),
   };
 };
 
