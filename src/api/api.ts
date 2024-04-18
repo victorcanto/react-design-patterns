@@ -45,16 +45,36 @@ const withAbort = (fn: (...args: any[]) => Promise<any>) => {
   return executor;
 };
 
+const withLogging = async (promise: Promise<any>) => {
+  promise.catch((error) => {
+    if (!process.env.REACT_APP_DEBUG_API) throw error;
+
+    if (error.response) {
+      console.log(error.response.data);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+    } else if (error.request) {
+      console.log(error.request);
+    } else {
+      console.log("Error", error.message);
+    }
+    console.log(error.config);
+    throw error;
+  });
+};
+
 const api = (axios: AxiosInstance) => {
   return {
-    get: (url: string, config = {}) => withAbort(axios.get)(url, config),
-    delete: (url: string, config = {}) => withAbort(axios.delete)(url, config),
+    get: (url: string, config = {}) =>
+      withLogging(withAbort(axios.get)(url, config)),
+    delete: (url: string, config = {}) =>
+      withLogging(withAbort(axios.delete)(url, config)),
     post: (url: string, body: unknown, config = {}) =>
-      withAbort(axios.post)(url, body, config),
+      withLogging(withAbort(axios.post)(url, body, config)),
     put: (url: string, body: unknown, config = {}) =>
-      withAbort(axios.put)(url, body, config),
+      withLogging(withAbort(axios.put)(url, body, config)),
     patch: (url: string, body: unknown, config = {}) =>
-      withAbort(axios.patch)(url, body, config),
+      withLogging(withAbort(axios.patch)(url, body, config)),
   };
 };
 
