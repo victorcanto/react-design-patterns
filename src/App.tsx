@@ -1,7 +1,7 @@
-import SearchMeals from "./components/meals/search-meals";
+import ReactQueryDemo from "./components/quotes/react-query-demo";
 
 function App() {
-  return <SearchMeals />;
+  return <ReactQueryDemo />;
 }
 
 export default App;

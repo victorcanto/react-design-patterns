@@ -3,7 +3,7 @@ import axios, { AxiosInstance } from "axios";
 
 const axiosParams = {
   baseURL:
-    process.env.NODE_ENV === "development" ? "http://localhost:8080" : "/",
+    process.env.NODE_ENV === "development" ? "http://localhost:9000" : "/",
 };
 
 const axiosInstance = axios.create(axiosParams);
