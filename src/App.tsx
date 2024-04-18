@@ -1,7 +1,7 @@
-import ReactQueryDemo from "./components/quotes/react-query-demo";
+import ShoppingList from "./components/shopping-list/shopping-list";
 
 function App() {
-  return <ReactQueryDemo />;
+  return <ShoppingList />;
 }
 
 export default App;
