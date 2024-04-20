@@ -2,7 +2,6 @@ import { useCallback, useMemo, useState } from "react";
 import { nanoid } from "nanoid";
 import styled from "styled-components";
 import IngredientsList from "./ingredients-list";
-import IngredientsInfoHelper from "./ingredients-info-helper";
 import AddIngredient from "./add-ingredient";
 import { Ingredient } from "./types/ingredient";
 
@@ -50,7 +49,11 @@ const initialIngredients = [
   },
 ];
 
-const Ingredients = () => {
+interface IngredientsProps {
+  ingredientsInforHelper: React.ReactNode;
+}
+
+const Ingredients = ({ ingredientsInforHelper }: IngredientsProps) => {
   console.log("Ingredient rendered");
   const [ingredients, setIngredients] =
     useState<Ingredient[]>(initialIngredients);
@@ -78,7 +81,7 @@ const Ingredients = () => {
     <StyledContainer>
       <div>
         {ingredientsHeaderText}
-        <IngredientsInfoHelper />
+        {ingredientsInforHelper}
       </div>
 
       <StyledSpaceY4>
