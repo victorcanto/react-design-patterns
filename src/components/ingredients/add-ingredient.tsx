@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const StyledFieldset = styled.fieldset`
@@ -28,13 +29,11 @@ const StyledButton = styled.button`
 
 interface AddIngredientProps {
   addIngredient: (ingredient: string) => void;
-  ingredient: string;
-  setIngredient: (ingredient: string) => void;
 }
 
-const AddIngredient = (props: AddIngredientProps) => {
+const AddIngredient = ({ addIngredient }: AddIngredientProps) => {
   console.log("AddIngredient rendered");
-  const { addIngredient, ingredient, setIngredient } = props;
+  const [ingredient, setIngredient] = useState("");
 
   return (
     <form className="">
