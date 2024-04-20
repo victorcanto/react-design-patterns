@@ -1,7 +1,7 @@
-import ShoppingList from "./components/shopping-list/shopping-list";
+import Ingredients from "./components/ingredients/ingredients";
 
 function App() {
-  return <ShoppingList />;
+  return <Ingredients />;
 }
 
 export default App;
