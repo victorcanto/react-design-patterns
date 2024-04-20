@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 interface LazyLoaderProps {
   show?: boolean;
   delay?: number;
-  default: React.ReactNode;
+  render?: React.ReactNode;
 }
 
 export const LazyLoader = (props: LazyLoaderProps) => {
-  const { show = false, delay = 0 } = props;
+  const { show = false, delay = 0, render = null } = props;
   const [showLoader, setShowLoader] = useState(false);
 
   useEffect(() => {
@@ -30,5 +30,5 @@ export const LazyLoader = (props: LazyLoaderProps) => {
     };
   }, [show, delay]);
 
-  return showLoader ? "Loading..." : props.default;
+  return showLoader ? "Loading..." : render;
 };
