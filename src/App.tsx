@@ -1,8 +1,7 @@
-import Ingredients from "./components/ingredients/ingredients";
-import IngredientsInfoHelper from "./components/ingredients/ingredients-info-helper";
+import TrackMouse from "./components/track-mouse/track-mouse";
 
 function App() {
-  return <Ingredients ingredientsInforHelper={<IngredientsInfoHelper />} />;
+  return <TrackMouse />;
 }
 
 export default App;
