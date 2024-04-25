@@ -4,7 +4,7 @@ const URLS = {
   getMeals: "search.php",
 };
 
-export const searchMeals = async (query: string, config: object) => {
+export const searchMeals = async (query: string, config?: object) => {
   return api
     .get(URLS.getMeals, {
       baseURL: "https://www.themealdb.com/api/json/v1/1/",

@@ -1,7 +1,7 @@
-import TrackMouse from "./components/track-mouse/track-mouse";
+import Search from "./components/meals/search";
 
 function App() {
-  return <TrackMouse />;
+  return <Search />;
 }
 
 export default App;

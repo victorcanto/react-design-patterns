@@ -4,11 +4,7 @@ import { didAbort } from "../../../api/api";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { searchMeals } from "../../../api/meals/meals-api";
-
-interface Meal {
-  idMeal: number;
-  strMeal: string;
-}
+import { Meal } from "../types/meal";
 
 export const useFetchMeals = () => {
   const [meals, setMeals] = useState<Meal[]>([]);
